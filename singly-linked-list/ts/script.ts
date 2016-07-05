@@ -1,17 +1,17 @@
-class ListNode {
+class SingleListNode {
     value: number
-    next: ListNode
+    next: SingleListNode
     constructor(value: number) {
         this.value = value;
     }
-    setNext (next: ListNode) {
+    setNext (next: SingleListNode) {
         this.next = next
     }
 }
 
-class LinkedList {
-    head: ListNode
-    tail: ListNode
+class SingleLinkedList {
+    head: SingleListNode
+    tail: SingleListNode
     counter: number
     constructor(){
         this.head = this.tail = undefined
@@ -20,18 +20,18 @@ class LinkedList {
     addFirst(value: number){
         if (this.counter) {
             var head = this.head
-            this.head = new ListNode(value)
+            this.head = new SingleListNode(value)
             this.head.setNext(head)
         } else {
-            this.head = this.tail = new ListNode(value)
+            this.head = this.tail = new SingleListNode(value)
         }
         this.counter ++;
     }
     addLast(value: number){
         if (this.counter) {
-            this.tail.next = this.tail = new ListNode(value);
+            this.tail.next = this.tail = new SingleListNode(value);
         } else {    
-            this.head = this.tail = new ListNode(value);
+            this.head = this.tail = new SingleListNode(value);
         }
         this.counter ++;
     }
@@ -71,3 +71,18 @@ class LinkedList {
     }
 
 }
+
+var list = new SingleLinkedList();
+
+list.addFirst(6);
+list.addFirst(3);
+list.addLast(9);
+
+list.enumerateList();
+
+list.removeLast();
+list.removeFirst();
+list.enumerateList();
+
+list.removeLast();
+list.enumerateList();

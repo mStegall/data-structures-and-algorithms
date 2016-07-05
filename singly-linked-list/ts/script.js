@@ -1,38 +1,38 @@
-var ListNode = (function () {
-    function ListNode(value) {
+var SingleListNode = (function () {
+    function SingleListNode(value) {
         this.value = value;
     }
-    ListNode.prototype.setNext = function (next) {
+    SingleListNode.prototype.setNext = function (next) {
         this.next = next;
     };
-    return ListNode;
+    return SingleListNode;
 }());
-var LinkedList = (function () {
-    function LinkedList() {
+var SingleLinkedList = (function () {
+    function SingleLinkedList() {
         this.head = this.tail = undefined;
         this.counter = 0;
     }
-    LinkedList.prototype.addFirst = function (value) {
+    SingleLinkedList.prototype.addFirst = function (value) {
         if (this.counter) {
             var head = this.head;
-            this.head = new ListNode(value);
+            this.head = new SingleListNode(value);
             this.head.setNext(head);
         }
         else {
-            this.head = this.tail = new ListNode(value);
+            this.head = this.tail = new SingleListNode(value);
         }
         this.counter++;
     };
-    LinkedList.prototype.addLast = function (value) {
+    SingleLinkedList.prototype.addLast = function (value) {
         if (this.counter) {
-            this.tail.next = this.tail = new ListNode(value);
+            this.tail.next = this.tail = new SingleListNode(value);
         }
         else {
-            this.head = this.tail = new ListNode(value);
+            this.head = this.tail = new SingleListNode(value);
         }
         this.counter++;
     };
-    LinkedList.prototype.removeFirst = function () {
+    SingleLinkedList.prototype.removeFirst = function () {
         if (this.counter) {
             this.head = this.head.next;
             this.counter--;
@@ -41,7 +41,7 @@ var LinkedList = (function () {
             console.log("Error: nothing to remove!");
         }
     };
-    LinkedList.prototype.removeLast = function () {
+    SingleLinkedList.prototype.removeLast = function () {
         if (this.counter == 1) {
             this.head = this.tail = undefined;
             this.counter = 0;
@@ -59,7 +59,7 @@ var LinkedList = (function () {
             console.log("Error: nothing to remove!");
         }
     };
-    LinkedList.prototype.enumerateList = function () {
+    SingleLinkedList.prototype.enumerateList = function () {
         var node = this.head;
         console.log('-------------------------------');
         console.log('Length: ' + this.counter);
@@ -68,5 +68,15 @@ var LinkedList = (function () {
             node = node.next;
         }
     };
-    return LinkedList;
+    return SingleLinkedList;
 }());
+var list = new SingleLinkedList();
+list.addFirst(6);
+list.addFirst(3);
+list.addLast(9);
+list.enumerateList();
+list.removeLast();
+list.removeFirst();
+list.enumerateList();
+list.removeLast();
+list.enumerateList();
